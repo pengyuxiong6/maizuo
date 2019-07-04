@@ -28,6 +28,10 @@ export default new VueRouter({
       component: () => import("./views/city/index.vue")
     },
     {
+      path: 'center',
+      component: () => import('./views/home/center.vue')
+    },
+    {
       path: "*",
       redirect: "/films"
     }
