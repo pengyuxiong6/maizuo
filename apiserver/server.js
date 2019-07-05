@@ -18,6 +18,7 @@ mongoose.connect(url, { useNewUrlParser: true })
 // 中间件的使用和配置
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }))
+server.use(express.static('public'))
 server.use((req, res, next) => {
   res.set("Access-Control-Allow-Origin", "*")
   res.set("Access-Control-Allow-Headers", "content-type")

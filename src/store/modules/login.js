@@ -2,7 +2,8 @@ import axios from 'axios'
 import { Toast } from 'vant'
 import router from '@/router'
 const state = {
-  userInfo: null
+  userInfo: window.localStorage.getItem('userInfo')
+  ? JSON.parse(window.localStorage.getItem('userInfo')) : null
 }
 const getters = {
 
@@ -21,12 +22,18 @@ const actions = {
       .then(response => {
         let res = response.data
           if(res.code === 0) {
+            window.localStorage.setItem('userInfo', JSON.stringify(res.data))
             context.commit({ type: 'setUserInfo', info: res.data})
-            router.push('/center')
+            Toast('登录成功')
+            setTimeout(() => {
+              router.push('/center')
+            }, 500)
+            
+            
           } else {
             Toast(res.msg)
           }
-        Toast.clear()
+        
       })
   }
 }
