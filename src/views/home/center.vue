@@ -45,7 +45,7 @@ export default {
 }
 </script>
  <style lang="scss">
- @import '../../assets/style/common/mixins.scss';
+ @import '../../assets/styles/common/mixins.scss';
 .page-login {
   width: 100%;
   background: #f4f4f4;
