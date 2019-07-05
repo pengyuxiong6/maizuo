@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Toast } from 'vant'
+import router from '@/router'
 const state = {
   userInfo: null
 }
@@ -19,7 +20,12 @@ const actions = {
     axios.post('http://localhost:9090/login', payload)
       .then(response => {
         let res = response.data
-        console.log(res)
+          if(res.code === 0) {
+            context.commit({ type: 'setUserInfo', info: res.data})
+            router.push('/center')
+          } else {
+            Toast(res.msg)
+          }
         Toast.clear()
       })
   }
