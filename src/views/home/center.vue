@@ -19,26 +19,26 @@
           <div class="common-p">商品订单</div>
         </li>
       </ul>
-      <div class="margin-set my-card">
+      <router-link class="margin-set my-card" to="/card">
         <img src="../../assets/images/icon1.png" alt="" style="width:20px;height:20px">
         <span class="label">卖座券</span>
         <img src="../../assets/images/arrow.png" class="arrow" alt="">
-      </div>
-       <div class="margin-set my-card">
+      </router-link>
+       <router-link class="margin-set my-card" to="/card">
         <img src="../../assets/images/icon1.png" alt="" style="width:20px;height:20px">
         <span class="label">组合红包</span>
         <img src="../../assets/images/arrow.png" class="arrow" alt="">
-      </div>
-       <div class="margin-set my-card">
+      </router-link>
+       <router-link class="margin-set my-card" to="/card">
         <img src="../../assets/images/icon1.png" alt="" style="width:20px;height:20px">
         <span class="label">余额</span>
         <img src="../../assets/images/arrow.png" class="arrow" alt="">
-      </div>
-       <div class="margin-set my-card">
+      </router-link>
+       <router-link class="margin-set my-card" to="/card">
         <img src="../../assets/images/icon1.png" alt="" style="width:20px;height:20px">
         <span class="label">设置</span>
         <img src="../../assets/images/arrow.png" class="arrow" alt="">
-      </div>
+      </router-link>
     </div>
   </div>
 </template>

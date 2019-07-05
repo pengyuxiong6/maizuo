@@ -20,16 +20,17 @@ const actions = {
     Toast.loading({ duration: 0, message: '加载中' })
     axios.post('http://localhost:9090/login', payload)
       .then(response => {
+        
         let res = response.data
           if(res.code === 0) {
             window.localStorage.setItem('userInfo', JSON.stringify(res.data))
             context.commit({ type: 'setUserInfo', info: res.data})
             Toast('登录成功')
             setTimeout(() => {
-              router.push('/center')
+              //判断登陆页面是否有redirect参数
+              let redirect = router.currentRoute.query.redirect || '/center';
+              router.replace(redirect)
             }, 500)
-            
-            
           } else {
             Toast(res.msg)
           }
