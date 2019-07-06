@@ -72,11 +72,12 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "city",
 
   methods: {
+    ...mapActions('city',['getCinema']),
     //将请求城市列表的代码移动到万年老二App.vue里面去做
     //why：因为这个数据在很多地方都需要使用到
     // ...mapActions("city", ["getCities"]),
@@ -105,6 +106,7 @@ export default {
     //4.将城市id给本地储存起来
     window.localStorage.setItem("curCityId",cityId);
     //5.重新获取影片影院的数据
+    this.getCinema();
     }
   },
   computed: {
