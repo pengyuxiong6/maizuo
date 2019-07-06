@@ -1,9 +1,18 @@
 <template>
   <div class="page-login">
     <div class="center-view">
-      <div class="avatar">
-        <img src="../../assets/images/defava.png" class="avatar-icon" alt />
-        <router-link tag="div" to="/login" class="nick-name">立即登录</router-link>
+       <div class="avatar" v-if="userInfo">
+         <div class="avatar-icon">
+        <img :src="userInfo.avatar"  alt />
+        <input type="file" @change="handleUpdateAvatar">
+        </div>
+        <div class="nick-name">{{userInfo.nickname}}</div>
+      </div>
+      <div class="avatar" v-else>
+         <div class="avatar-icon">
+        <img src="../../assets/images/defava.png" alt />
+         </div>
+          <router-link tag="div" to="/login" class="nick-name">立即登录</router-link>
       </div>
       <ul class="my-order-tab">
         <li>
@@ -15,11 +24,11 @@
           <div class="common-p">商品订单</div>
         </li>
       </ul>
-      <div class="margin-set my-card">
+      <router-link tag="div" class="margin-set my-card" to="/card">
         <img src="../../assets/images/icon1.png" alt="" style="width:20px;height:20px">
         <span class="label">卖座券</span>
         <img src="../../assets/images/arrow.png" class="arrow" alt="">
-      </div>
+      </router-link>
        <div class="margin-set my-card">
         <img src="../../assets/images/icon1.png" alt="" style="width:20px;height:20px">
         <span class="label">组合红包</span>
@@ -30,9 +39,9 @@
         <span class="label">余额</span>
         <img src="../../assets/images/arrow.png" class="arrow" alt="">
       </div>
-       <div class="margin-set my-card">
+       <div class="margin-set my-card" @click="handleLogout">
         <img src="../../assets/images/icon1.png" alt="" style="width:20px;height:20px">
-        <span class="label">设置</span>
+        <span class="label">退出登录</span>
         <img src="../../assets/images/arrow.png" class="arrow" alt="">
       </div>
     </div>
@@ -40,8 +49,15 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 export default {
-  name: 'login'
+  name: 'center',
+  computed: {
+    ...mapState('login',['userInfo'])
+  },
+  methods: {
+    ...mapActions('login', ['handleUpdateAvatar','handleLogout'])
+  }
 }
 </script>
  <style lang="scss">
@@ -70,11 +86,26 @@ export default {
       align-items: center;
       color: #fff;
       .avatar-icon{
+            position: relative;
             width: 63px;
             height: 63px;
             border-radius: 35px;
             margin-right: 20px;
             border: 2px solid #fff;
+            img {
+              display: block;
+            border-radius: 50%;
+              width: 100%;
+              height: 100%;
+            }
+            input {
+              position: absolute;
+              top: 0;
+              left: 0;
+              opacity: 0;
+              width: 100%;
+              width: 100%;
+            }
       }
       .nick-name {
         color: #fff;
@@ -96,6 +127,7 @@ export default {
           position: relative;
           flex: 1;
           img{
+            
             width: 26px;
             height: 26px;
           }

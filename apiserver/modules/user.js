@@ -3,13 +3,21 @@ const mongoose = require('mongoose')
 
 // schema
 const UserSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     required: true
   },
   password: {
     type: String,
     required: true
+  },
+  nickname: {
+    type: String,
+    default: '用户'
+  },
+  avatar: {
+    type: String,
+    default: "http://localhost:9090/avatar.jpg"
   }
 })
 // 表

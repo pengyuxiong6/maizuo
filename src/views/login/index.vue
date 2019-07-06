@@ -11,11 +11,11 @@
             <input type="text" v-model="username" placeholder="用户名" class="input-control" required/>
           </div>
           <div class="form-group">
-            <input placeholder="密码" v-model="password" class="input-control" required/>
+            <input placeholder="密码" v-model="password" class="input-control" required type="password"/>
           </div>
           <!---->
           <!---->
-          <button class="submit login-btn" @click="HandleLogin({username, password})" :disabled="!username || !password">
+          <button class="submit login-btn" @click.prevent="HandleLogin({username, password})" :disabled="!username || !password">
             <span>登录</span>
           </button>
         </form>
