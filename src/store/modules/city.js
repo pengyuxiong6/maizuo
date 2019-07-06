@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Toast } from "vant";
 const state = {
+    cinemas: [],//影院
     cities: window.localStorage.getItem("cities") ?
     JSON.parse(window.localStorage.getItem("cities")) : [],  //城市列表数据
     searchVal: "", //搜索关键字
@@ -62,6 +63,9 @@ const mutations = {
     },
     setCurCityId(state,payload) {
         state.curCityId = payload.cityId;
+    },
+    setCinema(state,payload) {
+        state.cinemas = payload.list;
     }
 };
 const actions = {
@@ -92,7 +96,24 @@ const actions = {
            }
            Toast.clear();
        })
-   }
+   },
+   getCinema({ commit }) {
+    let cityIs = window.localStorage.getItem("curCityId");
+    axios.get(`https://m.maizuo.com/gateway?cityId=${cityIs}`,{
+        headers:{
+            'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.0.4","e":"15604803767322919240024"}',
+            'X-Host': 'mall.film-ticket.cinema.list'
+        }
+    }).then( response =>{
+        let res = response.data;
+        if (res.status == 0) {
+            commit({
+                type:'setCinema',
+                list: res.data.cinemas
+            })
+        }
+    })
+}
 }
 export default {
     namespaced: true,
