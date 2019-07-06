@@ -1,6 +1,10 @@
 /* eslint-disable */
 const express = require('express')
 const mongoose = require('mongoose')
+const multer = require('multer')
+const update = multer({
+  dest: './tmp'
+})
 const url = 'mongodb://127.0.0.1:27017/maizuo';
 const userController = require('./controllers/user')
 //创建erpress实例
@@ -28,7 +32,8 @@ server.use((req, res, next) => {
 //路由设置
 
 server.post('/register', userController.postRegister) //注册
-server.post('/login', userController.postLogin) //登录
+server.post('/sign-in', userController.postLogin) //登录
+server.post('/user/profile', update.single('avatar'), userController.postChgAvatar) //修改头像
 
 
 server.listen(9090)

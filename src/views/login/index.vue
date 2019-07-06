@@ -15,7 +15,7 @@
           </div>
           <!---->
           <!---->
-          <button class="submit login-btn" @click="HandleLogin({username, password})" :disabled="!username || !password">
+          <button class="submit login-btn" @click.prevent="HandleLogin({username, password})" :disabled="!username || !password">
             <span>登录</span>
           </button>
         </form>
