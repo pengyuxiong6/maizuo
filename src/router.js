@@ -31,8 +31,6 @@ const router = new VueRouter({
     {
       path: '/login',
       component: () => import('./views/login/index.vue')
-<<<<<<< HEAD
-=======
     },
     {
       path: '/card',
@@ -41,7 +39,6 @@ const router = new VueRouter({
         //是否已经登录
         isLogined: true
       }
->>>>>>> Zx
     },
     {
       path: "*",

@@ -24,7 +24,7 @@ const actions = {
   //登录
   HandleLogin (context, payload) {
     Toast.loading({ duration: 0,mask:true, message: '加载中' })
-    axios.post('http://localhost:9090/sign-in', payload)
+    axios.post('http://129.204.220.147:9090/sign-in', payload)
       .then(response => {
         Toast.clear()
         let res = response.data
@@ -49,7 +49,7 @@ const actions = {
     let formData = new FormData()
     formData.append('userId', state.userInfo.userId)
     formData.append('avatar', event.target.files[0])
-    axios.post('http://localhost:9090/user/profile', formData, {
+    axios.post('http://129.204.220.147:9090/user/profile', formData, {
       headers: {
         'content-type': 'multipart/form-data'
       }

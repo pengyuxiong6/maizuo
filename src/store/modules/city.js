@@ -98,7 +98,7 @@ const actions = {
        })
    },
    getCinema({ commit }) {
-    let cityIs = window.localStorage.getItem("curCityId");
+    let cityIs = window.localStorage.getItem("curCityId") ? window.localStorage.getItem("curCityId") : 440300;
     axios.get(`https://m.maizuo.com/gateway?cityId=${cityIs}`,{
         headers:{
             'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.0.4","e":"15604803767322919240024"}',
